@@ -70,7 +70,8 @@ public class InitializrMetadataBuildCustomizerTests {
 		projectDescription.addDependency(dependency.getId(),
 				ConceptTranslator.toDependency(dependency));
 		Build build = contributeBuild(projectDescription, metadata);
-		assertThat(build.getMavenRepositories()).hasSize(2);
+		assertThat(build.getRepositories()).hasSize(2);
+		assertThat(build.getPluginRepositories()).isEmpty();
 	}
 
 	private ProjectDescription initializeProjectDescription() {

@@ -82,16 +82,9 @@ public class InitializrMetadataBuildCustomizer implements BuildCustomizer<Build>
 						bom.getVersion());
 			}
 		});
-		repositories.forEach((id, repository) -> {
-			if (repository.isSnapshotsEnabled()) {
-				build.addSnapshotMavenRepository(id, repository.getName(),
-						repository.getUrl().toExternalForm());
-			}
-			else {
-				build.addMavenRepository(id, repository.getName(),
-						repository.getUrl().toExternalForm());
-			}
-		});
+		repositories.forEach((id, repository) -> build.addRepository(id,
+				repository.getName(), repository.getUrl().toExternalForm(),
+				repository.isSnapshotsEnabled()));
 	}
 
 	private List<Dependency> mapDependencies() {
